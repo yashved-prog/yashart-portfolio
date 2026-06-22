@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#2D1B2E"/>
+  <rect x="40" y="40" width="720" height="920" rx="4" fill="#3D2B3E" stroke="#C8102E" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="400" y="480" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#8A7090" opacity="0.7">Crimson Reverie</text>
+  <text x="400" y="520" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#6A5070" opacity="0.5">placeholder artwork</text>
+</svg>

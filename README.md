@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YashArt — Portfolio Website
+
+A minimalist portfolio website for visual artist **@yashart_21**, built with Next.js (App Router).
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## How to Add / Remove Artwork
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All artwork data lives in a single file: **`data/artworks.js`**
 
-## Learn More
+### Adding an artwork
 
-To learn more about Next.js, take a look at the following resources:
+1. Drop your image file (JPG, PNG, or WebP) into `/public/images/artworks/`
+2. Add a new object to the `artworks` array in `data/artworks.js`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```js
+{
+  id: 10, // unique number
+  title: "My New Piece",
+  image: "/images/artworks/my-new-piece.jpg",
+  category: "paintings", // portraits | paintings | sketches | anime
+  medium: "Oil on Canvas",
+  year: 2025,
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Save and refresh — done!
 
-## Deploy on Vercel
+### Removing an artwork
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Delete the object from the `artworks` array in `data/artworks.js`
+2. Optionally delete the image file from `/public/images/artworks/`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Replacing the artist portrait
+
+Replace `/public/images/artist-portrait.svg` with your own image (update the file extension in `app/about/page.js` if needed).
+
+## Project Structure
+
+```
+portfolio/
+├── app/
+│   ├── layout.js          # Root layout with navbar & metadata
+│   ├── page.js            # Home (hero landing)
+│   ├── gallery/page.js    # Gallery (masonry grid)
+│   ├── about/page.js      # About the artist
+│   └── contact/page.js    # Contact (Instagram DM)
+├── components/
+│   ├── Navbar/            # Fixed navigation with mobile hamburger
+│   ├── GalleryGrid/       # Masonry grid with hover overlays
+│   └── Lightbox/          # Modal artwork viewer with enquiry CTA
+├── data/
+│   └── artworks.js        # ⭐ Edit this file to manage gallery content
+└── public/
+    └── images/
+        └── artworks/      # Drop artwork images here
+```
+
+## Tech Stack
+
+- **Next.js** (App Router) with React
+- **CSS Modules** — no external UI libraries
+- **next/image** for optimized image loading
+- Mobile-first responsive design
+
+## Deployment
+
+This project is ready to deploy on [Vercel](https://vercel.com):
+
+1. Push to a GitHub repository
+2. Import on Vercel
+3. Deploy — no configuration needed
+
+## Design Decisions
+
+- **No pricing** is shown anywhere — all enquiries funnel to Instagram DMs
+- **Category filter UI** is planned for Phase 2 — the data already supports it (see the `category` field on each artwork and the `categories` export)
+- **Red accent (#C8102E)** is used sparingly: hover states, active nav, CTA buttons
+- The design prioritizes the artwork — generous whitespace, no decorative elements
