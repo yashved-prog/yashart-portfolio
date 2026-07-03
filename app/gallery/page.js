@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { artworks } from '@/data/artworks';
 import GalleryGrid from '@/components/GalleryGrid/GalleryGrid';
 import styles from './page.module.css';
@@ -11,16 +12,28 @@ export const metadata = {
 export default function GalleryPage() {
   return (
     <section className={styles.gallery}>
-      <div className={styles.header}>
-        <span className={styles.label}>Portfolio</span>
-        <h1 className={styles.title}>Selected Works</h1>
-        <p className={styles.subtitle}>
-          Tap any piece to view details &amp; enquire
-        </p>
-      </div>
+      <Image
+        src="/images/main-bg.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        style={{ objectFit: 'cover' }}
+        className={styles.galleryBgImage}
+        aria-hidden="true"
+      />
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <span className={styles.label}>Portfolio</span>
+          <h1 className={styles.title}>Selected Works</h1>
+          <p className={styles.subtitle}>
+            Tap any piece to view details &amp; enquire
+          </p>
+        </div>
 
-      <div className={styles.gridWrapper}>
-        <GalleryGrid artworks={artworks} />
+        <div className={styles.gridWrapper}>
+          <GalleryGrid artworks={artworks} />
+        </div>
       </div>
     </section>
   );

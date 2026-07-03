@@ -23,7 +23,7 @@ export const artworks = [
   {
     id: 1,
     title: "Crimson Reverie",
-    image: "/images/artworks/placeholder-1.svg",
+    image: "/images/artworks/26141.jpg",
     category: "paintings",
     medium: "Acrylic on Canvas",
     year: 2025,
@@ -31,7 +31,7 @@ export const artworks = [
   {
     id: 2,
     title: "Silent Gaze",
-    image: "/images/artworks/placeholder-2.svg",
+    image: "/images/artworks/27968.jpg",
     category: "portraits",
     medium: "Charcoal on Paper",
     year: 2025,
@@ -39,7 +39,7 @@ export const artworks = [
   {
     id: 3,
     title: "Urban Dusk",
-    image: "/images/artworks/placeholder-3.svg",
+    image: "/images/artworks/27970.jpg",
     category: "paintings",
     medium: "Oil on Canvas",
     year: 2024,
@@ -47,7 +47,7 @@ export const artworks = [
   {
     id: 4,
     title: "Whisper of Lines",
-    image: "/images/artworks/placeholder-4.svg",
+    image: "/images/artworks/29790.jpg",
     category: "sketches",
     medium: "Graphite on Paper",
     year: 2024,
@@ -55,7 +55,7 @@ export const artworks = [
   {
     id: 5,
     title: "Neon Ronin",
-    image: "/images/artworks/placeholder-5.svg",
+    image: "/images/artworks/33063.jpg",
     category: "anime",
     medium: "Digital",
     year: 2025,
@@ -63,7 +63,7 @@ export const artworks = [
   {
     id: 6,
     title: "Golden Hour",
-    image: "/images/artworks/placeholder-6.svg",
+    image: "/images/artworks/33823.jpg",
     category: "paintings",
     medium: "Watercolor",
     year: 2024,

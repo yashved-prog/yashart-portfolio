@@ -174,6 +174,16 @@ export default function Home() {
     <div ref={containerRef}>
       {/* ===== HERO ===== */}
       <section className={`${styles.hero} hero-section`}>
+        <Image
+          src="/images/main-bg.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
+          className={styles.heroBgImage}
+          aria-hidden="true"
+        />
         <div className={`${styles.heroContent} hero-content`}>
           <p className={`${styles.heroSub} hero-sub`}>Visual Artist &amp; Creator</p>
           <h1 className={`${styles.heroTitle} hero-title`}>
@@ -204,45 +214,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FEATURED WORKS (LARGE CARDS) ===== */}
-      <section id="featured" className={styles.featuredSection}>
+      {/* ===== CINEMATOGRAPHY VIDEO SECTION ===== */}
+      <section id="featured" className={styles.cinematographySection}>
         <div className={`${styles.sectionHeader} section-reveal`}>
-          <span className={styles.sectionLabel}>Selected Works</span>
-          <h2 className={styles.sectionTitle}>Featured Pieces</h2>
+          <span className={styles.sectionLabel}>Beyond the Canvas</span>
+          <h2 className={styles.sectionTitle}>Exploring Cinematography</h2>
         </div>
 
-        <div className={styles.featuredGrid}>
-          {featured.map((artwork, i) => (
-            <Link
-              href="/gallery"
-              key={artwork.id}
-              className={`${styles.featuredCard} ${i % 3 === 1 ? styles.featuredCardLarge : ''} featured-card`}
-              data-cursor-text="View Artwork"
+        <div className={`${styles.videoShowcase} section-reveal`}>
+          {/* Primary Reel */}
+          <div className={styles.videoWrapper}>
+            <video
+              className={styles.videoPlayer}
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/images/hero-bg.jpg"
             >
-              <div className={`${styles.cardImageWrapper} image-wrapper-reveal`}>
-                <Image
-                  src={artwork.image}
-                  alt={artwork.title}
-                  width={900}
-                  height={1100}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                  className={styles.cardImage}
-                  loading="lazy"
-                />
+              <source src="/videos/reel-02.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className={styles.videoOverlay}>
+              <div className={styles.videoOverlayContent}>
+                <span className={styles.videoLabel}>Currently Learning</span>
+                <h3 className={styles.videoTitle}>The Art of Moving Images</h3>
+                <p className={styles.videoDescription}>
+                  Art doesn&apos;t stop at the frame. I&apos;m diving into cinematography — 
+                  exploring how light, motion, and composition come together to tell 
+                  stories that paintings alone can&apos;t capture.
+                </p>
               </div>
-              <div className={`${styles.cardInfo} card-info`}>
-                <span className={styles.cardTitle}>{artwork.title}</span>
-                <span className={styles.cardMeta}>{artwork.medium}, {artwork.year}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+            </div>
+          </div>
 
-        <div className={`${styles.viewAllWrapper} section-reveal`}>
-          <Link href="/gallery" className={styles.viewAllBtn}>
-            <span>View All Works</span>
-            <span className={styles.viewAllArrow}>&rarr;</span>
-          </Link>
+          {/* Secondary Reel */}
+          <div className={`${styles.videoWrapper} ${styles.videoSecondary}`}>
+            <video
+              className={styles.videoPlayer}
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/videos/reel-01.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </section>
 
