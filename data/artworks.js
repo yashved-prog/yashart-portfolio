@@ -68,6 +68,14 @@ export const artworks = [
     medium: "Colored Pencil on Paper",
     year: 2024,
   },
+  {
+    id: 7,
+    title: "Perspective",
+    image: "/images/artworks/34916.jpeg",
+    category: "paintings",
+    medium: "Mixed Media on Paper",
+    year: 2025,
+  },
 ];
 
 /**

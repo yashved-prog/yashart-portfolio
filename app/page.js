@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { artworks } from '@/data/artworks';
+import { videos } from '@/data/videos';
 import styles from './page.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -215,54 +216,45 @@ export default function Home() {
       </section>
 
       {/* ===== CINEMATOGRAPHY VIDEO SECTION ===== */}
-      <section id="featured" className={styles.cinematographySection}>
-        <div className={`${styles.sectionHeader} section-reveal`}>
-          <span className={styles.sectionLabel}>Beyond the Canvas</span>
-          <h2 className={styles.sectionTitle}>Exploring Cinematography</h2>
-        </div>
+      {videos.length > 0 && (
+        <section id="featured" className={styles.cinematographySection}>
+          <div className={`${styles.sectionHeader} section-reveal`}>
+            <span className={styles.sectionLabel}>Beyond the Canvas</span>
+            <h2 className={styles.sectionTitle}>Exploring Cinematography</h2>
+          </div>
 
-        <div className={`${styles.videoShowcase} section-reveal`}>
-          {/* Primary Reel */}
-          <div className={styles.videoWrapper}>
-            <video
-              className={styles.videoPlayer}
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster="/images/hero-bg.jpg"
-            >
-              <source src="/videos/reel-02.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div className={styles.videoOverlay}>
-              <div className={styles.videoOverlayContent}>
-                <span className={styles.videoLabel}>Currently Learning</span>
-                <h3 className={styles.videoTitle}>The Art of Moving Images</h3>
-                <p className={styles.videoDescription}>
-                  Art doesn&apos;t stop at the frame. I&apos;m diving into cinematography — 
-                  exploring how light, motion, and composition come together to tell 
-                  stories that paintings alone can&apos;t capture.
-                </p>
+          <div className={`${styles.videoShowcase} section-reveal`}>
+            {videos.map((video) => (
+              <div
+                key={video.id}
+                className={`${styles.videoWrapper} ${!video.primary ? styles.videoSecondary : ''}`}
+              >
+                <video
+                  className={styles.videoPlayer}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src={video.src} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                {video.primary && (
+                  <div className={styles.videoOverlay}>
+                    <div className={styles.videoOverlayContent}>
+                      {video.label && <span className={styles.videoLabel}>{video.label}</span>}
+                      <h3 className={styles.videoTitle}>{video.title}</h3>
+                      {video.description && (
+                        <p className={styles.videoDescription}>{video.description}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
-
-          {/* Secondary Reel */}
-          <div className={`${styles.videoWrapper} ${styles.videoSecondary}`}>
-            <video
-              className={styles.videoPlayer}
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src="/videos/reel-01.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ===== HORIZONTAL SCROLL SHOWCASE ===== */}
       <section className={`${styles.horizontalSection} horizontal-section`}>
