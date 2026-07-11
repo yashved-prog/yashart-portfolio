@@ -27,6 +27,7 @@ export default function Navbar() {
 
   // Close menu on route change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMenuOpen(false);
   }, [pathname]);
 
@@ -47,7 +48,7 @@ export default function Navbar() {
       <nav className={styles.nav} aria-label="Main navigation">
         <Link href="/" className={styles.logoWrapper} aria-label="Home">
           <div className={styles.avatar}>
-            <img src="/images/artist-portrait.svg" alt="" aria-hidden="true" />
+            <Image src="/images/artist-portrait.svg" alt="" width={32} height={32} aria-hidden="true" />
           </div>
           <span className={styles.logoText}>
             YASH<span className={styles.logoAccent}>ART</span>
