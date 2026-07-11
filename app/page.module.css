@@ -610,18 +610,49 @@
    RESPONSIVE
    =================================== */
 @media (max-width: 768px) {
+  .hero {
+    min-height: 100svh;
+  }
+
+  .heroSub {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+  }
+
   .heroTitle {
-    font-size: clamp(3rem, 20vw, 7rem);
+    font-size: clamp(3rem, 18vw, 6rem);
   }
 
   .heroTagline {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
     margin-bottom: 2rem;
+  }
+
+  .heroCta {
+    padding: 0.85rem 2rem;
+    font-size: 0.65rem;
   }
 
   .gridLines {
     display: none;
+  }
+
+  .scrollIndicator {
+    bottom: 1.5rem;
+  }
+
+  /* Video section */
+  .cinematographySection {
+    padding: 4rem var(--page-padding) 3rem;
+  }
+
+  .sectionTitle {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  .sectionHeader {
+    margin-bottom: 2.5rem;
   }
 
   .videoWrapper {
@@ -629,29 +660,86 @@
     border-radius: 8px;
   }
 
+  .videoSecondary {
+    aspect-ratio: 16 / 9;
+  }
+
   .videoOverlayContent {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .videoTitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .videoDescription {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    line-height: 1.5;
   }
 
+  .videoLabel {
+    font-size: 0.5rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Horizontal scroll */
   .horizontalSlide {
-    width: 260px;
+    width: 240px;
   }
 
   .horizontalTrack {
-    padding: 0 2rem;
-    gap: 2rem;
+    padding: 0 1.5rem;
+    gap: 1.5rem;
   }
 
+  .slideTitle {
+    font-size: 0.7rem;
+  }
+
+  /* About & CTA */
   .aboutStrip,
   .ctaFooter {
-    padding: 5rem var(--page-padding);
+    padding: 4rem var(--page-padding);
+  }
+
+  .aboutContent {
+    padding: 2rem 1.5rem;
+  }
+
+  .aboutText {
+    font-size: 0.9rem;
+  }
+
+  .ctaFooterTitle {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  /* Footer */
+  .massiveText {
+    font-size: 30vw;
   }
 }
+
+/* Small phones */
+@media (max-width: 400px) {
+  .heroTitle {
+    font-size: clamp(2.5rem, 22vw, 5rem);
+  }
+
+  .horizontalSlide {
+    width: 200px;
+  }
+
+  .videoOverlayContent {
+    padding: 1rem;
+  }
+
+  .videoTitle {
+    font-size: 0.85rem;
+  }
+
+  .videoDescription {
+    display: none;
+  }
+}
+

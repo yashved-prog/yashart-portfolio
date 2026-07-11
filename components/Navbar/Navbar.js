@@ -55,8 +55,8 @@ export default function Navbar() {
         </Link>
 
         <ul className={`${styles.navLinks} ${menuOpen ? styles.navLinksOpen : ''}`}>
-          {navLinks.filter(link => link.label !== 'Contact').map(({ href, label }) => (
-            <li key={href}>
+          {navLinks.map(({ href, label }) => (
+            <li key={href} className={label === 'Contact' ? styles.mobileOnly : ''}>
               <Link
                 href={href}
                 className={`${styles.navLink} ${pathname === href ? styles.active : ''}`}

@@ -85,6 +85,11 @@
   transition: max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, gap 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Contact link hidden on desktop (shown as separate pill button) */
+.mobileOnly {
+  display: none;
+}
+
 .navLink {
   font-family: var(--font-body);
   font-size: 0.75rem;
@@ -165,29 +170,32 @@
 
 /* =======================================
    SCROLLED & HOVER SQUEEZE LOGIC
+   (Desktop only — disabled on mobile)
    ======================================= */
-.scrolled:not(:hover) .navLinks {
-  max-width: 0;
-  opacity: 0;
-  gap: 0;
-  pointer-events: none;
-}
+@media (min-width: 769px) {
+  .scrolled:not(:hover) .navLinks {
+    max-width: 0;
+    opacity: 0;
+    gap: 0;
+    pointer-events: none;
+  }
 
-.scrolled:not(:hover) .contactBtn {
-  max-width: 0;
-  opacity: 0;
-  padding-left: 0;
-  padding-right: 0;
-  border-width: 0;
-  margin-left: 0;
-  margin-right: 0;
-  pointer-events: none;
-}
+  .scrolled:not(:hover) .contactBtn {
+    max-width: 0;
+    opacity: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+    pointer-events: none;
+  }
 
-.scrolled:not(:hover) .loadingDots {
-  opacity: 1;
-  width: 23px; /* 3 dots (15px) + 2 gaps (8px) */
-  margin-left: 12px;
+  .scrolled:not(:hover) .loadingDots {
+    opacity: 1;
+    width: 23px;
+    margin-left: 12px;
+  }
 }
 
 .dot {
@@ -231,24 +239,33 @@
   display: none;
 }
 
+/* =======================================
+   MOBILE RESPONSIVE
+   ======================================= */
 @media (max-width: 768px) {
-  .nav {
-    padding: 0.5rem 0.5rem 0.5rem 1rem;
-    gap: 1.5rem;
+  .header {
+    top: 0.75rem;
+    border-radius: 9999px;
   }
-  
+
+  .nav {
+    padding: 0.4rem 0.5rem 0.4rem 0.85rem;
+    gap: 0.75rem;
+  }
+
   .contactBtn {
     display: none;
   }
-  
-  .hamburger {
-    padding: 8px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.05);
+
+  .loadingDots {
+    display: none;
   }
 
   .hamburger {
     display: flex;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
   .navLinks {
@@ -256,13 +273,18 @@
     top: 0;
     right: 0;
     bottom: 0;
+    left: auto;
     width: min(300px, 80vw);
+    max-width: none;
     flex-direction: column;
-    background-color: rgba(15, 15, 15, 0.75);
+    background-color: rgba(10, 10, 10, 0.92);
     backdrop-filter: blur(var(--glass-blur-strong));
     -webkit-backdrop-filter: blur(var(--glass-blur-strong));
-    padding: 6rem 2.5rem 2.5rem;
+    padding: 5rem 2rem 2rem;
     gap: 0;
+    opacity: 1;
+    overflow: visible;
+    white-space: normal;
     transform: translateX(100%);
     transition: transform 0.4s var(--ease-out-expo);
     z-index: 105;
@@ -274,11 +296,21 @@
     transform: translateX(0);
   }
 
+  .mobileOnly {
+    display: list-item;
+  }
+
   .navLink {
-    font-size: 0.875rem;
+    font-size: 1rem;
     letter-spacing: 0.12em;
     padding: 1.25rem 0;
     border-bottom: 1px solid var(--color-border);
+    display: block;
+    white-space: normal;
+  }
+
+  .navLink:last-child {
+    border-bottom: none;
   }
 
   .overlay {
@@ -289,9 +321,14 @@
     z-index: 102;
     animation: fadeIn 0.3s ease;
   }
+
+  .logoText {
+    font-size: 0.9rem;
+  }
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
