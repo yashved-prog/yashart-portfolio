@@ -287,7 +287,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Background image underneath */}
+        {/* Background image underneath (visible on desktop) */}
         <Image
           src="/images/main-bg.jpg"
           alt=""
@@ -298,6 +298,34 @@ export default function Home() {
           className={styles.heroBgImage}
           aria-hidden="true"
         />
+
+        {/* Mobile Dynamic Marquee (hidden on desktop) */}
+        <div className={styles.mobileMarquee} aria-hidden="true">
+          <div className={styles.mobileMarqueeInner}>
+            <div className={styles.marqueeRow} style={{ '--duration': '60s' }}>
+              {[...artworks, ...artworks, ...artworks, ...artworks].map((art, i) => (
+                <div key={`m1-${i}`} className={styles.marqueeItem}>
+                  <Image src={art.image} alt="" fill sizes="200px" style={{ objectFit: 'cover' }} />
+                </div>
+              ))}
+            </div>
+            <div className={styles.marqueeRow} style={{ '--duration': '75s', animationDirection: 'reverse' }}>
+              {[...artworks, ...artworks, ...artworks, ...artworks].reverse().map((art, i) => (
+                <div key={`m2-${i}`} className={styles.marqueeItem}>
+                  <Image src={art.image} alt="" fill sizes="200px" style={{ objectFit: 'cover' }} />
+                </div>
+              ))}
+            </div>
+            <div className={styles.marqueeRow} style={{ '--duration': '50s' }}>
+              {[...artworks, ...artworks, ...artworks, ...artworks].map((art, i) => (
+                <div key={`m3-${i}`} className={styles.marqueeItem}>
+                  <Image src={art.image} alt="" fill sizes="200px" style={{ objectFit: 'cover' }} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.marqueeOverlay} />
+        </div>
 
         {/* Canvas spotlight overlay */}
         <canvas
