@@ -27,7 +27,7 @@ export const videos = [
     title: "The Art of Moving Images",
     description:
       "Art doesn't stop at the frame. I'm diving into cinematography — exploring how light, motion, and composition come together to tell stories that paintings alone can't capture.",
-    label: "Currently Learning",
+    label: "",
     primary: true, // This one gets the overlay text
   },
   {

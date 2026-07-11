@@ -211,11 +211,11 @@ export default function Home() {
       gsap.utils.toArray('.section-reveal').forEach((el) => {
         gsap.fromTo(
           el,
-          { y: 50, opacity: 0 },
+          { y: 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 0.6,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: el,
