@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { gsap } from 'gsap';
@@ -16,6 +16,93 @@ const featured = artworks.slice(0, 6);
 
 export default function Home() {
   const containerRef = useRef(null);
+  const spotlightRef = useRef(null);
+  const mousePos = useRef({ x: 0.5, y: 0.5 });
+  const animFrame = useRef(null);
+  const currentPos = useRef({ x: 0.5, y: 0.5 });
+
+  // Spotlight canvas renderer
+  useEffect(() => {
+    const canvas = spotlightRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    const resize = () => {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * window.devicePixelRatio;
+      canvas.height = height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    let mobileAngle = 0;
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Smooth lerp toward target
+      if (!isMobile) {
+        currentPos.current.x += (mousePos.current.x - currentPos.current.x) * 0.08;
+        currentPos.current.y += (mousePos.current.y - currentPos.current.y) * 0.08;
+      } else {
+        // Mobile: ambient floating spotlight
+        mobileAngle += 0.004;
+        currentPos.current.x = 0.5 + Math.sin(mobileAngle) * 0.25;
+        currentPos.current.y = 0.5 + Math.cos(mobileAngle * 0.7) * 0.2;
+      }
+
+      const cx = currentPos.current.x * width;
+      const cy = currentPos.current.y * height;
+      const radius = Math.max(width, height) * (isMobile ? 0.35 : 0.28);
+
+      // Draw dark overlay with spotlight cutout
+      ctx.fillStyle = 'rgba(5, 5, 5, 0.92)';
+      ctx.fillRect(0, 0, width, height);
+
+      // Radial gradient spotlight
+      ctx.globalCompositeOperation = 'destination-out';
+      const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
+      gradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.8)');
+      gradient.addColorStop(0.75, 'rgba(0, 0, 0, 0.3)');
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+      ctx.globalCompositeOperation = 'source-over';
+
+      // Subtle warm glow at center
+      const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 0.6);
+      glow.addColorStop(0, 'rgba(200, 16, 46, 0.06)');
+      glow.addColorStop(1, 'rgba(200, 16, 46, 0)');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, width, height);
+
+      animFrame.current = requestAnimationFrame(draw);
+    };
+    draw();
+
+    const handleMouse = (e) => {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      mousePos.current.x = (e.clientX - rect.left) / rect.width;
+      mousePos.current.y = (e.clientY - rect.top) / rect.height;
+    };
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouse);
+    }
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', handleMouse);
+      cancelAnimationFrame(animFrame.current);
+    };
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -142,8 +229,9 @@ export default function Home() {
       // --- Horizontal scroll for large featured row ---
       const horizontalSection = document.querySelector('.horizontal-section');
       const horizontalTrack = document.querySelector('.horizontal-track');
+      const isMobileView = window.matchMedia('(max-width: 768px)').matches;
 
-      if (horizontalSection && horizontalTrack) {
+      if (horizontalSection && horizontalTrack && !isMobileView) {
         const totalScroll = horizontalTrack.scrollWidth - window.innerWidth;
 
         gsap.to(horizontalTrack, {
@@ -173,8 +261,33 @@ export default function Home() {
 
   return (
     <div ref={containerRef}>
-      {/* ===== HERO ===== */}
+      {/* ===== HERO WITH SPOTLIGHT ===== */}
       <section className={`${styles.hero} hero-section`}>
+        {/* Artwork collage layer (hidden, revealed by spotlight) */}
+        <div className={styles.spotlightArtworks} aria-hidden="true">
+          {artworks.map((art, i) => (
+            <div
+              key={art.id}
+              className={styles.spotlightArtItem}
+              style={{
+                '--art-x': `${12 + (i % 4) * 22}%`,
+                '--art-y': `${8 + Math.floor(i / 4) * 42}%`,
+                '--art-rotate': `${(i * 7 - 15) % 30}deg`,
+                '--art-scale': `${0.85 + (i % 3) * 0.12}`,
+              }}
+            >
+              <Image
+                src={art.image}
+                alt={art.title}
+                width={320}
+                height={420}
+                className={styles.spotlightArtImage}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Background image underneath */}
         <Image
           src="/images/main-bg.jpg"
           alt=""
@@ -185,6 +298,14 @@ export default function Home() {
           className={styles.heroBgImage}
           aria-hidden="true"
         />
+
+        {/* Canvas spotlight overlay */}
+        <canvas
+          ref={spotlightRef}
+          className={styles.spotlightCanvas}
+          aria-hidden="true"
+        />
+
         <div className={`${styles.heroContent} hero-content`}>
           <p className={`${styles.heroSub} hero-sub`}>Visual Artist &amp; Creator</p>
           <h1 className={`${styles.heroTitle} hero-title`}>
@@ -193,6 +314,7 @@ export default function Home() {
           <p className={`${styles.heroTagline} hero-tagline`}>
             Paintings &middot; Portraits &middot; Sketches &middot; Anime
           </p>
+          <p className={`${styles.heroHint} hero-sub`}>Move your cursor to discover</p>
           <button onClick={handleScrollDown} className={`${styles.heroCta} hero-cta`}>
             <span>Explore Works</span>
             <span className={styles.ctaArrow}>&darr;</span>
@@ -207,12 +329,6 @@ export default function Home() {
           <div className={styles.scrollLine} />
           <span className={styles.scrollLabel}>Scroll</span>
         </button>
-
-        <div className={styles.gridLines} aria-hidden="true">
-          <div className={styles.gridLine} />
-          <div className={styles.gridLine} />
-          <div className={styles.gridLine} />
-        </div>
       </section>
 
       {/* ===== CINEMATOGRAPHY VIDEO SECTION ===== */}

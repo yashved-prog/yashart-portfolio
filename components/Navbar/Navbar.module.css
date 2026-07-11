@@ -245,6 +245,11 @@
 @media (max-width: 768px) {
   .header {
     top: 0.75rem;
+    left: var(--page-padding);
+    right: var(--page-padding);
+    width: auto;
+    max-width: none;
+    transform: none;
     border-radius: 9999px;
   }
 
@@ -269,10 +274,10 @@
   }
 
   .navLinks {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    position: absolute;
+    top: -0.75rem;
+    right: calc(-1 * var(--page-padding));
+    height: 100dvh;
     left: auto;
     width: min(300px, 80vw);
     max-width: none;
