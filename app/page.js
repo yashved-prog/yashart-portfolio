@@ -443,15 +443,24 @@ export default function Home() {
         <div className={`${styles.ctaFooterContent} section-reveal`}>
           <span className={styles.sectionLabel}>Interested?</span>
           <h2 className={styles.ctaFooterTitle}>Let&apos;s Create Something Together</h2>
-          <a
-            href="https://ig.me/m/yashart_21"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.ctaFooterBtn}
-          >
-            <span>DM on Instagram</span>
-            <span className={styles.viewAllArrow}>&rarr;</span>
-          </a>
+          <div className={styles.ctaButtonGroup}>
+            <a
+              href="https://ig.me/m/yashart_21"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.ctaFooterBtn}
+            >
+              <span>DM on Instagram</span>
+              <span className={styles.viewAllArrow}>&rarr;</span>
+            </a>
+            <a
+              href="mailto:yashart21.collab@gmail.com"
+              className={styles.ctaFooterBtn}
+            >
+              <span>Email Me</span>
+              <span className={styles.viewAllArrow}>&rarr;</span>
+            </a>
+          </div>
         </div>
       </section>
 

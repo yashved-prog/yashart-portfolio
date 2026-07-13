@@ -71,7 +71,11 @@ export default function AboutPage() {
           <p className={`${styles.text} about-reveal`}>
             I&apos;m always open to commissions and collaborations. If a piece
             catches your eye, or you have something specific in mind, feel
-            free to reach out.
+            free to email me at{' '}
+            <a href="mailto:yashart21.collab@gmail.com" className={styles.handle}>
+              yashart21.collab@gmail.com
+            </a>{' '}
+            or reach out on Instagram.
           </p>
 
           <div className={`${styles.signature} about-reveal`}>

@@ -34,35 +34,65 @@ export default function ContactPage() {
           from you. Drop me a message on Instagram.
         </p>
 
-        <a
-          href={INSTAGRAM_DM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${styles.dmButton} contact-reveal`}
-        >
-          <svg
-            className={styles.igIcon}
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+        <div className={styles.buttonGroup}>
+          <a
+            href={INSTAGRAM_DM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.dmButton} contact-reveal`}
           >
-            <rect x="2" y="2" width="20" height="20" rx="5" />
-            <circle cx="12" cy="12" r="5" />
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-          </svg>
-          <span>DM me on Instagram</span>
-          <span className={styles.arrow}>&rarr;</span>
-        </a>
+            <svg
+              className={styles.igIcon}
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+            <span>DM on Instagram</span>
+            <span className={styles.arrow}>&rarr;</span>
+          </a>
+
+          <a
+            href="mailto:yashart21.collab@gmail.com"
+            className={`${styles.dmButton} contact-reveal`}
+          >
+            <svg
+              className={styles.igIcon}
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>Email Me</span>
+            <span className={styles.arrow}>&rarr;</span>
+          </a>
+        </div>
 
         <div className={`${styles.divider} contact-reveal`} aria-hidden="true" />
 
         <div className={`${styles.handleSection} contact-reveal`}>
-          <p className={styles.handleLabel}>Find me on Instagram</p>
+          <p className={styles.handleLabel}>Get in touch directly</p>
+          <a
+            href="mailto:yashart21.collab@gmail.com"
+            className={styles.handle}
+          >
+            yashart21.collab@gmail.com
+          </a>
           <a
             href={INSTAGRAM_PROFILE_URL}
             target="_blank"

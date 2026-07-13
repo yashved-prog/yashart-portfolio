@@ -645,6 +645,13 @@
   max-width: 500px;
 }
 
+.ctaButtonGroup {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .ctaFooterBtn {
   display: inline-flex;
   align-items: center;
