@@ -49,7 +49,7 @@ export default function Navbar() {
       <nav className={styles.nav} aria-label="Main navigation">
         <Link href="/" className={styles.logoWrapper} aria-label="Home">
           <div className={styles.avatar}>
-            <Image src="/images/artist-portrait.svg" alt="" width={32} height={32} aria-hidden="true" />
+            <Image src="/images/artist-pfp.jpg" alt="Yash Art" width={32} height={32} className={styles.avatarImage} />
           </div>
           <span className={styles.logoText}>
             YASH<span className={styles.logoAccent}>ART</span>

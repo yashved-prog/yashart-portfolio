@@ -45,7 +45,7 @@ export default function AboutPage() {
       <div className={styles.container}>
         <div className={`${styles.portraitWrapper} about-reveal`}>
           <Image
-            src="/images/artist-portrait.svg"
+            src="/images/artist-pfp.jpg"
             alt="YashArt — Artist portrait"
             width={480}
             height={600}
