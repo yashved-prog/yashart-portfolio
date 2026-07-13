@@ -63,8 +63,9 @@ export default function AboutPage() {
 
           <p className={`${styles.text} about-reveal`}>
             Every piece begins as a feeling or a fragment of a story I want
-            to tell. I work across mediums — oil, acrylic, charcoal, ink,
-            and digital — depending on what the subject demands.
+            to tell. I work across mediums — graphite, colorpencil, mixed
+            media, charcoal, ink, and digital — depending on what the subject
+            demands.
           </p>
 
           <p className={`${styles.text} about-reveal`}>
